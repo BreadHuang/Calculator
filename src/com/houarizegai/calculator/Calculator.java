@@ -90,23 +90,17 @@ public class Calculator {
         inText.setFont(new Font("Comic Sans MS", Font.PLAIN, 33));
         window.add(inText);
         
-        btnC = new JButton("C");
-        btnC.setBounds(x[0],y[1],wBtn,hBtn);
-        btnC.setFont(btnFont);
-        btnC.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        btnC.addActionListener(event -> {
+        CBtn CBtn = new CBtn();
+        CBtn.btn.addActionListener(event -> {
             repaintFont();
             inText.setText("0");
             opt = ' ';
             val = 0;
         });
-        window.add(btnC);
+        window.add(CBtn.btn);
                 
-        btnBack = new JButton("<-");
-        btnBack.setBounds(x[1],y[1],wBtn,hBtn);
-        btnBack.setFont(btnFont);
-        btnBack.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        btnBack.addActionListener(event -> {
+        BackBtn backBtn = new BackBtn();
+        backBtn.btn.addActionListener(event -> {
             repaintFont();
             String str = inText.getText();
             StringBuilder str2 = new StringBuilder();
@@ -119,13 +113,10 @@ public class Calculator {
                 inText.setText(str2.toString());
             }
         });
-        window.add(btnBack);
+        window.add(backBtn.btn);
         
-        btnMod = new JButton("%");
-        btnMod.setBounds(x[2],y[1],wBtn,hBtn);
-        btnMod.setFont(btnFont);
-        btnMod.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        btnMod.addActionListener(event -> {
+        ModBtn modBtn = new ModBtn();
+        modBtn.btn.addActionListener(event -> {
             repaintFont();
             if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
                 if (go) {
@@ -140,7 +131,7 @@ public class Calculator {
                     addWrite = false;
                 }
         });
-        window.add(btnMod);
+        window.add(modBtn.btn);
         
         AddBtn addBtn = new AddBtn();
         addBtn.btn.addActionListener(event -> {
@@ -223,11 +214,8 @@ public class Calculator {
         });
         window.add(divBtn.btn);
         
-        btnPoint = new JButton(".");
-        btnPoint.setBounds(x[0],y[5],wBtn,hBtn);
-        btnPoint.setFont(new Font("Comic Sans MS", Font.BOLD, 32));
-        btnPoint.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        btnPoint.addActionListener(event -> {
+        PointBtn pointBtn = new PointBtn();
+        pointBtn.btn.addActionListener(event -> {
             repaintFont();
             if (addWrite) {
                 inText.setText(inText.getText() + ".");
@@ -237,13 +225,10 @@ public class Calculator {
             }
             go = true;
         });
-        window.add(btnPoint);
+        window.add(pointBtn.btn);
         
-        btnEqual = new JButton("=");
-        btnEqual.setBounds(x[2],y[5],2*wBtn+10,hBtn);
-        btnEqual.setFont(btnFont);
-        btnEqual.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        btnEqual.addActionListener(event -> {
+        EqualBtn equalBtn = new EqualBtn();
+        equalBtn.btn.addActionListener(event -> {
             if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
                 if (go) {
                     val = calc(val, inText.getText(), opt);
@@ -256,7 +241,7 @@ public class Calculator {
                     addWrite = false;
                 }
         });
-        window.add(btnEqual);
+        window.add(equalBtn.btn);
         
         CreateNumBtn btn0 = new CreateNumBtn(new JButton("0"),"0", 1, 5);
         CreateNumBtn btn1 = new CreateNumBtn(new JButton("1"),"1", 0, 4);
