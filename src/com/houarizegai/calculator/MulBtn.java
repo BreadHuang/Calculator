@@ -4,13 +4,13 @@ import java.awt.Color;
 import java.awt.Cursor;
 import javax.swing.JButton;
 
-public class MulBtn implements CreateButton{
+public class MulBtn{
 	JButton btn = new JButton("*");
 	
 	public MulBtn(){
-		setEvt();
+		//setEvt();
 	}
-	
+	/*
 	public void setEvt() {
 		btn.setBounds(x[3],y[2],wBtn,hBtn);
 		btn.setFont(btnFont);
@@ -18,4 +18,5 @@ public class MulBtn implements CreateButton{
 		btn.setBackground(null);
 		btn.setForeground(Color.BLACK);
 	}
+	*/
 }

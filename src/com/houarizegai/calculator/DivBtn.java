@@ -5,13 +5,13 @@ import java.awt.Cursor;
 
 import javax.swing.JButton;
 
-public class DivBtn implements CreateButton{
+public class DivBtn{
 	JButton btn = new JButton("/");
 	
 	public DivBtn(){
-		setEvt();
+		//setEvt();
 	}
-	
+	/*
 	public void setEvt() {
 		btn.setBounds(x[3],y[1],wBtn,hBtn);
 		btn.setFont(btnFont);
@@ -19,4 +19,5 @@ public class DivBtn implements CreateButton{
 		btn.setBackground(null);
 		btn.setForeground(Color.BLACK);
 	}
+	*/
 }

@@ -4,13 +4,13 @@ import java.awt.Color;
 import java.awt.Cursor;
 import javax.swing.JButton;
 
-public class SubBtn implements CreateButton{
+public class SubBtn{
 	JButton btn = new JButton("-");
 	
 	public SubBtn(){
-		setEvt();
+		//setEvt();
 	}
-	
+	/*
 	public void setEvt() {
 		btn.setBounds(x[3],y[3],wBtn,hBtn);
 		btn.setFont(btnFont);
@@ -18,4 +18,5 @@ public class SubBtn implements CreateButton{
 		btn.setBackground(null);
 		btn.setForeground(Color.BLACK);
 	}
+	*/
 }

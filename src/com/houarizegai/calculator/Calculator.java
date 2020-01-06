@@ -15,7 +15,7 @@ public class Calculator {
 
     private JFrame window; // This is Main Window
     private JTextField inText, affichageCalc; // Input Text
-    private JButton btnDiv, btn7, btn8, btn9,btnMul, btn4, btn5, btn6, btnSub, btn1, btn2, btn3, btnAdd, btnPoint, btn0, btnEqual, choixColor;
+    private JButton btnC, btnBack, btnMod, btnDiv, btnMul, btnSub, btnAdd, btnPoint, btnEqual, choixColor;
     private char opt = ' ';             // Storage Operator
     private boolean go = true,          // Faire Calcule Avec Opt != (=)
             addWrite = true;    // Racordé des Nombres dans l'Affichage
@@ -90,18 +90,23 @@ public class Calculator {
         inText.setFont(new Font("Comic Sans MS", Font.PLAIN, 33));
         window.add(inText);
         
-        CBtn btnC = new CBtn();
-        btnC.btn.addActionListener(event -> {
+        btnC = new JButton("C");
+        btnC.setBounds(x[0],y[1],wBtn,hBtn);
+        btnC.setFont(btnFont);
+        btnC.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnC.addActionListener(event -> {
             repaintFont();
             inText.setText("0");
             opt = ' ';
             val = 0;
         });
-        
-        window.add(btnC.btn);
+        window.add(btnC);
                 
-        BackBtn btnBack = new BackBtn();
-        btnBack.btn.addActionListener(event -> {
+        btnBack = new JButton("<-");
+        btnBack.setBounds(x[1],y[1],wBtn,hBtn);
+        btnBack.setFont(btnFont);
+        btnBack.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnBack.addActionListener(event -> {
             repaintFont();
             String str = inText.getText();
             StringBuilder str2 = new StringBuilder();
@@ -114,11 +119,13 @@ public class Calculator {
                 inText.setText(str2.toString());
             }
         });
+        window.add(btnBack);
         
-        window.add(btnBack.btn);
-        
-        ModBtn btnMod = new ModBtn();
-        btnMod.btn.addActionListener(event -> {
+        btnMod = new JButton("%");
+        btnMod.setBounds(x[2],y[1],wBtn,hBtn);
+        btnMod.setFont(btnFont);
+        btnMod.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnMod.addActionListener(event -> {
             repaintFont();
             if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
                 if (go) {
@@ -133,11 +140,13 @@ public class Calculator {
                     addWrite = false;
                 }
         });
-        window.add(btnMod.btn);
+        window.add(btnMod);
         
-        
-        AddBtn btnAdd = new AddBtn();
-        btnAdd.btn.addActionListener(event -> {
+        btnAdd = new JButton("+");
+        btnAdd.setBounds(x[3], y[4], wBtn, hBtn);
+        btnAdd.setFont(btnFont);
+        btnAdd.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnAdd.addActionListener(event -> {
             repaintFont();
             if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
                 if (go) {
@@ -154,10 +163,13 @@ public class Calculator {
                     opt = '+';
                 }
         });
-        window.add(btnAdd.btn);
+        window.add(btnAdd);
         
-        SubBtn btnSub = new SubBtn();
-        btnSub.btn.addActionListener(event -> {
+        btnSub = new JButton("-");
+        btnSub.setBounds(x[3],y[3],wBtn,hBtn);
+        btnSub.setFont(btnFont);
+        btnSub.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnSub.addActionListener(event -> {
             repaintFont();
             if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
                 if (go) {
@@ -175,10 +187,13 @@ public class Calculator {
                     opt = '-';
                 }
         });
-        window.add(btnSub.btn);
+        window.add(btnSub);
         
-        MulBtn btnMul = new MulBtn();
-        btnMul.btn.addActionListener(event -> {
+        btnMul = new JButton("*");
+        btnMul.setBounds(x[3],y[2],wBtn,hBtn);
+        btnMul.setFont(btnFont);
+        btnMul.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnMul.addActionListener(event -> {
             repaintFont();
             if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
                 if (go) {
@@ -195,10 +210,13 @@ public class Calculator {
                     opt = '*';
                 }
         });
-        window.add(btnMul.btn);
+        window.add(btnMul);
         
-        DivBtn btnDiv = new DivBtn();
-        btnDiv.btn.addActionListener(event -> {
+        btnDiv = new JButton("/");
+        btnDiv.setBounds(x[3],y[1],wBtn,hBtn);
+        btnDiv.setFont(btnFont);
+        btnDiv.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnDiv.addActionListener(event -> {
             repaintFont();
             if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
                 if (go) {
@@ -215,181 +233,13 @@ public class Calculator {
                     opt = '/';
                 }
         });
-        window.add(btnDiv.btn);
+        window.add(btnDiv);
         
-        Btn0 btn0 = new Btn0();
-        btn0.btn.addActionListener(event -> {
-            repaintFont();
-            if (addWrite) {
-                if (Pattern.matches("[0]*", inText.getText())) {
-                    inText.setText("0");
-                } else {
-                    inText.setText(inText.getText() + "0");
-                }
-            } else {
-                inText.setText("0");
-                addWrite = true;
-            }
-            go = true;
-        });
-        window.add(btn0.btn);
-        
-        Btn1 btn1 = new Btn1();
-        btn1.btn.addActionListener(event -> {
-            repaintFont();
-            if (addWrite) {
-                if (Pattern.matches("[0]*", inText.getText())) {
-                    inText.setText("1");
-                } else {
-                    inText.setText(inText.getText() + "1");
-                }
-            } else {
-                inText.setText("1");
-                addWrite = true;
-            }
-            go = true;
-        });
-        window.add(btn1.btn);
-        
-        Btn2 btn2 = new Btn2();
-        btn2.btn.addActionListener(event -> {
-            repaintFont();
-            if (addWrite) {
-                if (Pattern.matches("[0]*", inText.getText())) {
-                    inText.setText("2");
-                } else {
-                    inText.setText(inText.getText() + "2");
-                }
-            } else {
-                inText.setText("2");
-                addWrite = true;
-            }
-            go = true;
-        });
-        window.add(btn2.btn);
-        
-        Btn3 btn3 = new Btn3();
-        btn3.btn.addActionListener(event -> {
-            repaintFont();
-            if (addWrite) {
-                if (Pattern.matches("[0]*", inText.getText())) {
-                    inText.setText("3");
-                } else {
-                    inText.setText(inText.getText() + "3");
-                }
-            } else {
-                inText.setText("3");
-                addWrite = true;
-            }
-            go = true;
-        });
-        window.add(btn3.btn);
-        
-        Btn4 btn4 = new Btn4();
-        btn4.btn.addActionListener(event -> {
-            repaintFont();
-            if (addWrite) {
-                if (Pattern.matches("[0]*", inText.getText())) {
-                    inText.setText("4");
-                } else {
-                    inText.setText(inText.getText() + "4");
-                }
-            } else {
-                inText.setText("4");
-                addWrite = true;
-            }
-            go = true;
-        });
-        window.add(btn4.btn);
-        
-        
-        Btn5 btn5 = new Btn5();
-        btn5.btn.addActionListener(event -> {
-            repaintFont();
-            if (addWrite) {
-                if (Pattern.matches("[0]*", inText.getText())) {
-                    inText.setText("5");
-                } else {
-                    inText.setText(inText.getText() + "5");
-                }
-            } else {
-                inText.setText("5");
-                addWrite = true;
-            }
-            go = true;
-        });
-        window.add(btn5.btn);
-
-        Btn6 btn6 = new Btn6();
-        btn6.btn.addActionListener(event -> {
-            repaintFont();
-            if (addWrite) {
-                if (Pattern.matches("[0]*", inText.getText())) {
-                    inText.setText("6");
-                } else {
-                    inText.setText(inText.getText() + "6");
-                }
-            } else {
-                inText.setText("6");
-                addWrite = true;
-            }
-            go = true;
-        });
-        window.add(btn6.btn);
-        
-        Btn7 btn7 = new Btn7();
-        btn7.btn.addActionListener(event -> {
-            repaintFont();
-            if (addWrite) {
-                if (Pattern.matches("[0]*", inText.getText())) {
-                    inText.setText("7");
-                } else {
-                    inText.setText(inText.getText() + "7");
-                }
-            } else {
-                inText.setText("7");
-                addWrite = true;
-            }
-            go = true;
-        });
-        window.add(btn7.btn);
-        
-        Btn8 btn8 = new Btn8();
-        btn8.btn.addActionListener(event -> {
-            repaintFont();
-            if (addWrite) {
-                if (Pattern.matches("[0]*", inText.getText())) {
-                    inText.setText("8");
-                } else {
-                    inText.setText(inText.getText() + "8");
-                }
-            } else {
-                inText.setText("8");
-                addWrite = true;
-            }
-            go = true;
-        });
-        window.add(btn8.btn);
-        
-        Btn9 btn9 = new Btn9();
-        btn9.btn.addActionListener(event -> {
-            repaintFont();
-            if (addWrite) {
-                if (Pattern.matches("[0]*", inText.getText())) {
-                    inText.setText("9");
-                } else {
-                    inText.setText(inText.getText() + "9");
-                }
-            } else {
-                inText.setText("9");
-                addWrite = true;
-            }
-            go = true;
-        });
-        window.add(btn9.btn);
-                
-        PointBtn btnPoint = new PointBtn();
-        btnPoint.btn.addActionListener(event -> {
+        btnPoint = new JButton(".");
+        btnPoint.setBounds(x[0],y[5],wBtn,hBtn);
+        btnPoint.setFont(new Font("Comic Sans MS", Font.BOLD, 32));
+        btnPoint.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnPoint.addActionListener(event -> {
             repaintFont();
             if (addWrite) {
                 inText.setText(inText.getText() + ".");
@@ -399,10 +249,13 @@ public class Calculator {
             }
             go = true;
         });
-        window.add(btnPoint.btn);
+        window.add(btnPoint);
         
-        EqualBtn btnEqual = new EqualBtn();
-        btnEqual.btn.addActionListener(event -> {
+        btnEqual = new JButton("=");
+        btnEqual.setBounds(x[2],y[5],2*wBtn+10,hBtn);
+        btnEqual.setFont(btnFont);
+        btnEqual.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnEqual.addActionListener(event -> {
             if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
                 if (go) {
                     val = calc(val, inText.getText(), opt);
@@ -415,7 +268,30 @@ public class Calculator {
                     addWrite = false;
                 }
         });
-        window.add(btnEqual.btn);
+        window.add(btnEqual);
+        
+        CreateNumBtn btn0 = new CreateNumBtn(new JButton("0"),"0", 1, 5);
+        CreateNumBtn btn1 = new CreateNumBtn(new JButton("1"),"1", 0, 4);
+        CreateNumBtn btn2 = new CreateNumBtn(new JButton("2"),"2", 1, 4);
+        CreateNumBtn btn3 = new CreateNumBtn(new JButton("3"),"3", 2, 4);
+        CreateNumBtn btn4 = new CreateNumBtn(new JButton("4"),"4", 0, 3);
+        CreateNumBtn btn5 = new CreateNumBtn(new JButton("5"),"5", 1, 3);
+        CreateNumBtn btn6 = new CreateNumBtn(new JButton("6"),"6", 2, 3);
+        CreateNumBtn btn7 = new CreateNumBtn(new JButton("7"),"7", 0, 2);
+        CreateNumBtn btn8 = new CreateNumBtn(new JButton("8"),"8", 1, 2);
+        CreateNumBtn btn9 = new CreateNumBtn(new JButton("9"),"9", 2, 2);
+        
+        addBtn(btn0.returnBtn(), "0");
+        addBtn(btn1.returnBtn(), "1");
+        addBtn(btn2.returnBtn(), "2");
+        addBtn(btn3.returnBtn(), "3");
+        addBtn(btn4.returnBtn(), "4");
+        addBtn(btn5.returnBtn(), "5");
+        addBtn(btn6.returnBtn(), "6");
+        addBtn(btn7.returnBtn(), "7");
+        addBtn(btn8.returnBtn(), "8");
+        addBtn(btn9.returnBtn(), "9");
+        
         window.setLayout(null);
         window.setResizable(false);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // If Click into The Red Button => End The Processus
@@ -442,6 +318,23 @@ public class Calculator {
 
     private void repaintFont() {
         inText.setFont(inText.getFont().deriveFont(Font.PLAIN));
+    }
+    private void addBtn(JButton btn, String txt) {
+    	btn.addActionListener(event -> {
+            repaintFont();
+            if (addWrite) {
+                if (Pattern.matches("[0]*", inText.getText())) {
+                    inText.setText(txt);
+                } else {
+                    inText.setText(inText.getText() + txt);
+                }
+            } else {
+                inText.setText(txt);
+                addWrite = true;
+            }
+            go = true;
+        });
+    	window.add(btn);
     }
 /*
     private void themeColor() {

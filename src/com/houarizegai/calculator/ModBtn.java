@@ -5,13 +5,13 @@ import java.awt.Cursor;
 
 import javax.swing.JButton;
 
-public class ModBtn implements CreateButton{
+public class ModBtn{
 	JButton btn = new JButton("%");
 	
 	public ModBtn(){
-		setEvt();
+		//setEvt();
 	}
-	
+	/*
 	public void setEvt() {
 		btn.setBounds(x[2],y[1],wBtn,hBtn);
 		btn.setFont(btnFont);
@@ -19,4 +19,5 @@ public class ModBtn implements CreateButton{
 		btn.setBackground(null);
 		btn.setForeground(Color.BLACK);
 	}
+	*/
 }
