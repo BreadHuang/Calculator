@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Cursor;
 import javax.swing.JButton;
 
-public class CBtn{
+public class CBtn extends CreateBtn{
 	JButton btn = new JButton("C");
 	
 	public CBtn(){

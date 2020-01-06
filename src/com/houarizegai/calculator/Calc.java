@@ -3,7 +3,7 @@ package com.houarizegai.calculator;
 import java.awt.Font;
 import javax.swing.JTextField;
 
-public class calc {
+public class Calc {
 	
 	public double calc(JTextField inText, double x, String input, char opt) {
         inText.setFont(inText.getFont().deriveFont(Font.BOLD));

@@ -5,19 +5,15 @@ import java.awt.Cursor;
 
 import javax.swing.JButton;
 
-public class EqualBtn{
+public class EqualBtn extends CreateBtn{
 	JButton btn = new JButton("=");
 	
-	public EqualBtn(){
-		//setEvt();
-	}
-	/*
-	public void setEvt() {
+	public EqualBtn() {
 		btn.setBounds(x[2],y[5],2*wBtn+10,hBtn);
 		btn.setFont(btnFont);
 		btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btn.setBackground(null);
 		btn.setForeground(Color.BLACK);
 	}
-	*/
+
 }

@@ -21,30 +21,11 @@ public class CreateNumBtn extends CreateBtn{
 		btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btn.setBackground(null);
 		btn.setForeground(Color.BLACK);
-		btn.addActionListener(event -> {
-            repaintFont();
-            if (addWrite) {
-                if (Pattern.matches("[0]*", inText.getText())) {
-                    inText.setText(txt);
-                } else {
-                    inText.setText(inText.getText() + txt);
-                }
-            } else {
-                inText.setText(txt);
-                addWrite = true;
-            }
-            go = true;
-        });
+		
 		this.btn = btn;
-    	
 	}
-    
-	public void repaintFont() {
-        inText.setFont(inText.getFont().deriveFont(Font.PLAIN));
+    public JButton returnBtn() {
+    	return this.btn;
     }
-	
-	public JButton returnBtn() {
-		return this.btn;
-	}
 	
 }

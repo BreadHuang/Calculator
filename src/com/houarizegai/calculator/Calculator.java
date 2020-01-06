@@ -142,11 +142,8 @@ public class Calculator {
         });
         window.add(btnMod);
         
-        btnAdd = new JButton("+");
-        btnAdd.setBounds(x[3], y[4], wBtn, hBtn);
-        btnAdd.setFont(btnFont);
-        btnAdd.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        btnAdd.addActionListener(event -> {
+        AddBtn addBtn = new AddBtn();
+        addBtn.btn.addActionListener(event -> {
             repaintFont();
             if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
                 if (go) {
@@ -163,13 +160,10 @@ public class Calculator {
                     opt = '+';
                 }
         });
-        window.add(btnAdd);
+        window.add(addBtn.btn);
         
-        btnSub = new JButton("-");
-        btnSub.setBounds(x[3],y[3],wBtn,hBtn);
-        btnSub.setFont(btnFont);
-        btnSub.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        btnSub.addActionListener(event -> {
+        SubBtn subBtn = new SubBtn();
+        subBtn.btn.addActionListener(event -> {
             repaintFont();
             if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
                 if (go) {
@@ -187,13 +181,10 @@ public class Calculator {
                     opt = '-';
                 }
         });
-        window.add(btnSub);
+        window.add(subBtn.btn);
         
-        btnMul = new JButton("*");
-        btnMul.setBounds(x[3],y[2],wBtn,hBtn);
-        btnMul.setFont(btnFont);
-        btnMul.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        btnMul.addActionListener(event -> {
+        MulBtn mulBtn = new MulBtn();
+        mulBtn.btn.addActionListener(event -> {
             repaintFont();
             if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
                 if (go) {
@@ -210,13 +201,10 @@ public class Calculator {
                     opt = '*';
                 }
         });
-        window.add(btnMul);
+        window.add(mulBtn.btn);
         
-        btnDiv = new JButton("/");
-        btnDiv.setBounds(x[3],y[1],wBtn,hBtn);
-        btnDiv.setFont(btnFont);
-        btnDiv.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        btnDiv.addActionListener(event -> {
+        DivBtn divBtn = new DivBtn();
+        divBtn.btn.addActionListener(event -> {
             repaintFont();
             if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
                 if (go) {
@@ -233,7 +221,7 @@ public class Calculator {
                     opt = '/';
                 }
         });
-        window.add(btnDiv);
+        window.add(divBtn.btn);
         
         btnPoint = new JButton(".");
         btnPoint.setBounds(x[0],y[5],wBtn,hBtn);
@@ -297,7 +285,8 @@ public class Calculator {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // If Click into The Red Button => End The Processus
         window.setVisible(true);
     }
-
+    //Calc calc = new Calc();
+    
     private double calc(double x, String input, char opt) {
         inText.setFont(inText.getFont().deriveFont(Font.BOLD));
         double y = Double.parseDouble(input);
@@ -320,6 +309,7 @@ public class Calculator {
         inText.setFont(inText.getFont().deriveFont(Font.PLAIN));
     }
     private void addBtn(JButton btn, String txt) {
+    	
     	btn.addActionListener(event -> {
             repaintFont();
             if (addWrite) {
@@ -334,6 +324,7 @@ public class Calculator {
             }
             go = true;
         });
+        
     	window.add(btn);
     }
 /*

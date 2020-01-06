@@ -4,7 +4,7 @@ import java.awt.Cursor;
 import java.awt.Color;
 import javax.swing.JButton;
 
-public class BackBtn{
+public class BackBtn extends CreateBtn{
 	JButton btn = new JButton("<-");
 	
 	public BackBtn(){
