@@ -17,5 +17,4 @@ public abstract class CreateBtn{
     boolean go = true, addWrite = true;
     
     Font btnFont = new Font("Comic Sans MS", Font.PLAIN, 28);
-    JTextField inText = new JTextField();
 }

@@ -15,7 +15,7 @@ public class Calculator {
 
     private JFrame window; // This is Main Window
     private JTextField inText, affichageCalc; // Input Text
-    private JButton btnC, btnBack, btnMod, btnDiv, btnMul, btnSub, btnAdd, btnPoint, btnEqual, choixColor;
+    private JButton choixColor;
     private char opt = ' ';             // Storage Operator
     private boolean go = true,          // Faire Calcule Avec Opt != (=)
             addWrite = true;    // Racordé des Nombres dans l'Affichage
@@ -73,21 +73,8 @@ public class Calculator {
         //choixColor.addActionListener(event -> themeColor());
         window.add(choixColor);
 
-        int wBtn = 80;// Width Button
-        // Height Button
-        int hBtn = 70;
-        int marginX = 20;
-        int marginY = 60;
-        int j = -1;
-        int k = -1;
-        int[] x = {marginX, marginX + 90, 200, 290};
-        int[] y = {marginY, marginY + 100, marginY + 180, marginY + 260, marginY + 340, marginY + 420};
-
-        inText = new JTextField("0");
-        inText.setBounds(x[0],y[0],350,70);
-        inText.setEditable(false);
-        inText.setBackground(Color.WHITE);
-        inText.setFont(new Font("Comic Sans MS", Font.PLAIN, 33));
+        ShowText showText = new ShowText();
+        inText = showText.inText;
         window.add(inText);
         
         CBtn CBtn = new CBtn();
@@ -134,85 +121,16 @@ public class Calculator {
         window.add(modBtn.btn);
         
         AddBtn addBtn = new AddBtn();
-        addBtn.btn.addActionListener(event -> {
-            repaintFont();
-            if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
-                if (go) {
-                    val = calc(val, inText.getText(), opt);
-                    if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
-                        inText.setText(String.valueOf((int) val));
-                    } else {
-                        inText.setText(String.valueOf(val));
-                    }
-                    opt = '+';
-                    go = false;
-                    addWrite = false;
-                } else {
-                    opt = '+';
-                }
-        });
-        window.add(addBtn.btn);
+        btnOptEvt(addBtn.btn, '+');
         
         SubBtn subBtn = new SubBtn();
-        subBtn.btn.addActionListener(event -> {
-            repaintFont();
-            if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
-                if (go) {
-                    val = calc(val, inText.getText(), opt);
-                    if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
-                        inText.setText(String.valueOf((int) val));
-                    } else {
-                        inText.setText(String.valueOf(val));
-                    }
-
-                    opt = '-';
-                    go = false;
-                    addWrite = false;
-                } else {
-                    opt = '-';
-                }
-        });
-        window.add(subBtn.btn);
+        btnOptEvt(subBtn.btn, '-');
         
         MulBtn mulBtn = new MulBtn();
-        mulBtn.btn.addActionListener(event -> {
-            repaintFont();
-            if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
-                if (go) {
-                    val = calc(val, inText.getText(), opt);
-                    if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
-                        inText.setText(String.valueOf((int) val));
-                    } else {
-                        inText.setText(String.valueOf(val));
-                    }
-                    opt = '*';
-                    go = false;
-                    addWrite = false;
-                } else {
-                    opt = '*';
-                }
-        });
-        window.add(mulBtn.btn);
+        btnOptEvt(mulBtn.btn, '*');
         
         DivBtn divBtn = new DivBtn();
-        divBtn.btn.addActionListener(event -> {
-            repaintFont();
-            if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
-                if (go) {
-                    val = calc(val, inText.getText(), opt);
-                    if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
-                        inText.setText(String.valueOf((int) val));
-                    } else {
-                        inText.setText(String.valueOf(val));
-                    }
-                    opt = '/';
-                    go = false;
-                    addWrite = false;
-                } else {
-                    opt = '/';
-                }
-        });
-        window.add(divBtn.btn);
+        btnOptEvt(divBtn.btn, '/');
         
         PointBtn pointBtn = new PointBtn();
         pointBtn.btn.addActionListener(event -> {
@@ -228,20 +146,7 @@ public class Calculator {
         window.add(pointBtn.btn);
         
         EqualBtn equalBtn = new EqualBtn();
-        equalBtn.btn.addActionListener(event -> {
-            if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
-                if (go) {
-                    val = calc(val, inText.getText(), opt);
-                    if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
-                        inText.setText(String.valueOf((int) val));
-                    } else {
-                        inText.setText(String.valueOf(val));
-                    }
-                    opt = '=';
-                    addWrite = false;
-                }
-        });
-        window.add(equalBtn.btn);
+        btnOptEvt(equalBtn.btn, '=');
         
         CreateNumBtn btn0 = new CreateNumBtn(new JButton("0"),"0", 1, 5);
         CreateNumBtn btn1 = new CreateNumBtn(new JButton("1"),"1", 0, 4);
@@ -309,8 +214,28 @@ public class Calculator {
             }
             go = true;
         });
-        
     	window.add(btn);
+    }
+    private void btnOptEvt(JButton btn, char txt) {
+    	btn.addActionListener(event -> {
+            repaintFont();
+            if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
+                if (go) {
+                    val = calc(val, inText.getText(), opt);
+                    if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
+                        inText.setText(String.valueOf((int) val));
+                    } else {
+                        inText.setText(String.valueOf(val));
+                    }
+                    opt = txt;
+                    go = false;
+                    addWrite = false;
+                } else {
+                	opt = txt;
+                }
+        });
+    	
+        window.add(btn);
     }
 /*
     private void themeColor() {
